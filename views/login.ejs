@@ -1,0 +1,47 @@
+<% layout('./layouts/page') %>
+<% block('title', 'Login page') %>
+
+<p>Enter username and password to login or registration.</p>
+
+<form class="login-form" name="login-form">
+  <div class="login-form__row">
+    <input name="username" placeholder="Name" type="text">
+  </div>
+  
+  <div class="login-form__row">
+    <input name="password" placeholder="Password" type="password">
+  </div>
+  
+  <div class="login-form__row">
+    <button class="login-form__submit" type="submit">Enter</button>
+    <span class="login-form__error"></span>
+  </div>
+</form>
+
+<script>
+  $(document.forms['login-form']).on('submit', function() {
+    var form = $(this);
+
+    $('.login-form__error', form).html('');
+
+    $.ajax({
+      url: '/login',
+      data: form.serialize(),
+      method: 'POST',
+      complete: function() {
+        $('.login-form__submit', form).html('Enter');
+      },
+      statusCode: {
+        200: function() {
+          form.html('Your enter the site');
+          window.location.href = '/chat';
+        },
+        403: function(jqXHR) {
+          var error = JSON.parse(jqXHR.responseText);
+          $('.login-form__error', form).html(error.message);
+        }
+      }
+    });
+    return false;
+  });
+</script>
