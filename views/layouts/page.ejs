@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CHAT</title>
+    <title>Chat</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;subset=cyrillic" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <%- partial('../blocks/header') %>
-    
-    <main>
-      <h2><%= blocks.title %></h2>
-      
-      <%- body %>
-    </main>
-    
-    <footer>
-      <%- blocks.footer %>
-    </footer>
+    <div class="container">
+      <%- partial('../blocks/header') %>
+
+      <main class="container__body">
+        <h2 class="title"><%= blocks.title %></h2>
+
+        <%- body %>
+      </main>
+    </div>
   </body>
 </html>

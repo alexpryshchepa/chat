@@ -8,7 +8,9 @@
   "dependencies": {
     "async": "^2.6.0",
     "body-parser": "~1.18.2",
+    "connect": "^3.6.5",
     "connect-mongo": "^2.0.1",
+    "cookie": "^0.3.1",
     "cookie-parser": "~1.4.3",
     "crypto": "^1.0.1",
     "debug": "~2.6.9",
@@ -21,6 +23,7 @@
     "morgan": "~1.9.0",
     "nconf": "^0.10.0",
     "serve-favicon": "~2.4.5",
+    "socket.io": "^2.0.4",
     "winston": "^2.4.0"
   },
   "devDependencies": {}

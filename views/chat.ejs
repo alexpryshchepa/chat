@@ -1,5 +1,49 @@
 <% layout('./layouts/page') %>
-<% block('title', 'Chat page') %>
+<% block('title', 'Welcome to chat') %>
 
-<p>Hello form chat page</p>
-<p>Welcome: <%= user.get('username') %></p>
+<div id="room" class="chat">
+  <p>Glad to see you <span class="username"><%= user.get('username') %></span></p>
+  
+  <ul class="chat__area"></ul>
+  <form class="chat__message">
+    <input class="form-control" autocomplete="off" autofocus placeholder="Message...">
+  </form>
+</div>
+
+<script>
+  var socket = io.connect();
+
+  var form = $('#room form');
+  var ul = $('#room ul');
+
+  form.submit(function() {
+    var input = $(this).find('input');
+    var text = input.val();
+    input.val('');
+
+    socket.emit('message', text);
+
+    return false;
+  });
+
+  socket.on('message', function(username, message) {
+    printMessage("<span>" +username + ": </span>" + message);
+  });
+  
+  socket.on('leave', function(username) {
+    printStatus("<span>" +username + ": </span> leave the chat");
+  });
+  
+  socket.on('join', function(username) {
+    printStatus("<span>" +username + ": </span> enter the chat");
+  });
+  
+  function printMessage(text) {
+    $('<li class="chat__user-message">').html(text).appendTo(ul);
+    ul.scrollTop(9999999999999999999999);
+  }
+  
+  function printStatus(status) {
+    $('<li class="chat__status-message">').append($('<i>').html(status)).appendTo(ul);
+  }
+</script>

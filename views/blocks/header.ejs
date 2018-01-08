@@ -1,15 +1,15 @@
 <header class='header'>
   <ul>
-    <li><a href="/" class="header__link">HOME</a></li>
+    <li><a href="/" class="header__link">Home</a></li>
     <% if (user) { %>
-    <li><a href="/chat" class="header__link">CHAT</a></li>
+    <li><a href="/chat" class="header__link">Chat</a></li>
     <% } %>
   </ul>
   <ul>
     <% if (user) { %>
-    <li><a href="" class="header__link" onclick="var form = $('<form method=POST action=/logout></form>');$(document.body).append(form);$(form).submit();return false">LOGOUT</a></li>
+    <li><a href="" class="header__link" onclick="var form = $('<form method=POST action=/logout></form>');$(document.body).append(form);$(form).submit();return false">Logout</a></li>
     <% } else { %>
-    <li><a href="/login" class="header__link">ENTER</a></li>
+    <li><a href="/login" class="header__link">Log in</a></li>
     <% } %>
   </ul>
 </header>

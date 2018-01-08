@@ -447,20 +447,59 @@ template {
 }
 
 /*MAIN STYLES*/
-body {
-  font: 14px Verdana, Helvetica, Arial, sans-serif;
+html {
+  height: 100%;
 }
 
-main {
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #AC9BC7;
+  height: 100%;
   padding: 50px;
+  color: #eee;
 }
 
 a {
   color: #00B7FF;
 }
 
+p {
+  color: #eee;
+}
+
 * {
   box-sizing: border-box;
+}
+
+.container {
+  box-shadow: 0 0 100px rgba(0, 0, 0, .5);
+  height: calc(100vh - 100px);
+  background-color: #7B6F8E;
+  display: flex;
+  flex-direction: column;
+}
+
+.container__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 300;
+  color: #eee;
+  margin: 0;
+}
+
+.username {
+  font-size: 20px;
+  color: gold;
+  text-transform: uppercase;
 }
 
 .header {
@@ -468,6 +507,13 @@ a {
   background: #eee;
   display: flex;
   justify-content: space-between;
+}
+
+.header__link {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  color: #111;
 }
 
 .header > ul {
@@ -493,24 +539,72 @@ a {
 
 .login-form__row > input {
   display: block;
+  font-family: 'Roboto', sans-serif;
   width: 100%;
-  height: 45px;
+  height: 55px;
   padding: 0 20px;
+  border: 0;
+  box-shadow: none;
 }
 
 .login-form__submit {
   width: 200px;
   height: 45px;
   border-radius: 5px;
-  background: yellowgreen;
-  font-weight: bold;
+  margin-top: 20px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898; 
+  background-blend-mode: multiply, multiply;
+  color: #eee;
+  font-size: 18px;
+  font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: none;
   border: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
 }
 
 .login-form__error {
   margin-left: 30px;
   color: tomato;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat__area {
+  display: block;
+  flex: 1;
+  list-style-type: none;
+  margin: 0 0 20px 0;
+  padding: 40px;
+  border-radius: 5px;
+  background-color: #333;
+  overflow-y: auto;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 1);
+}
+
+.chat__message > input {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  height: 55px;
+  padding: 0 40px;
+  border: 0;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.chat__status-message {
+  font-size: 12px;
+}
+
+.chat__user-message {
+  
+}
+
+.chat__user-message > span {
+  color: gold;
 }

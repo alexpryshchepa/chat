@@ -24,12 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-var MongoStore = require('connect-mongo')(session);
+var sessionStore = require('./libs/sessionStore');
+
 app.use(session({
   secret: config.get('session:secret'),
   key: config.get('session:key'),
   cookie: config.get('session:cookie'),
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: sessionStore,
   resave: false,
   saveUninitialized: false,
 }));
@@ -61,7 +62,12 @@ app.use(function(err, req, res, next) {
   }
 });
 
-http.createServer(app).listen(config.get('port'), function() {
+var server = http.createServer(app);
+
+var io = require('./socket')(server);
+app.set('io', io);
+
+server.listen(config.get('port'), function() {
   log.info('Server listening on port ' + config.get('port'));
 });
 
